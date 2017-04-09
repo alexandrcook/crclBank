@@ -69,22 +69,3 @@ function  deleteTransaction($pdo)
 
     header('location: /account');
 }
-
-//SORT
-
-function sortTable($pdo)
-{
-    $sort_table = $_GET['sort_obj'];
-    $sort_by = $_GET['sort_param'];
-    $sort_way = $_GET['sort_way'];
-
-    $userAccounts = getUserAccounts($pdo, $_SESSION['id']);
-    $userTransactions = getSortTable($pdo, $_SESSION['id'], $sort_table, $sort_by, $sort_way);
-    $userBalance = getUserBallance($pdo, $_SESSION['id']);
-    $categories = getTransactionCategories($pdo);
-
-    view('account', ['userAccounts' => $userAccounts,
-        'categories' => $categories,
-        'transactions' => $userTransactions,
-        'balance' => $userBalance]);
-}
