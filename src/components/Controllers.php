@@ -4,97 +4,34 @@ foreach (glob("controllers/*.php") as $filename) {
     include_once $filename;
 }
 
-if (isset($controllerFileName) and $controllerFileName == 'admin') {
-    include_once PATHROOT . '/admin/adminController.php';
-}
-
 if (isset($controllerFileName)) {
-    if ($controllerFileName == 'login') {
-        if (!isset($action) and !isset($routId)) {
-            index();
-        } elseif ($action == 'auth') {
-            auth($pdo, $_POST);
-        }
-    } else if ($controllerFileName == 'account') {
-        if (!isset($action) and !isset($routId)) {
-            accountIndex($pdo);
-        } elseif ($action == 'auth') {
-            auth($pdo, $_POST);
-        }
-
-    } else if ($controllerFileName == 'categories') {
-        if (!isset($action) and !isset($routId)) {
-            catIndex($pdo);
-        } elseif (isset($routId)) {
-            categoryById($pdo, $routId);
-        } else {
-            view('404');
-        }
-    } else if ($controllerFileName == 'orders') {
-        if (!isset($action) and !isset($routId)) {
-            orderIndex($pdo);
-        } elseif ($action == 'add' and isset($_POST)) {
-            addProduct($pdo, $_POST);
-        } elseif ($action == 'basket') {
-            productsInBasket($pdo);
-        } elseif ($action == 'buy') {
-            orderBuy($pdo, $_POST);
-        } else {
-            view('404');
-        }
-    } else if ($controllerFileName == 'admin') {
+    if ($controllerFileName == 'account') {
         $_method = $_GET['method'] ?? null;
-        $_page = $_GET['page'] ?? 0;
-        if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+        $_sort_obj = $_GET['sort_obj'] ?? null;
+        if (isset($_SESSION['id'])) {
             if (!isset($action) and $_method == null) {
-                adminIndex($pdo);
-            } elseif ($action == 'users') {
-                if ($_method == null) {
-                    showUsers($pdo);
-                } elseif ($_method == 'create') {
-
-                } elseif ($_method == 'edit') {
-                    editUser($pdo, $_GET);
-                } elseif ($_method == 'delete') {
-
-                } elseif ($_method == 'change') {
-                    changeUserData($pdo, $_POST);
+                if ($_sort_obj != null) {
+                    accountIndex($pdo, $_sort_obj);
+                } else {
+                    accountIndex($pdo);
                 }
-            } elseif ($action == 'categories') {
-                if (!isset($_method)) {
-                    showCategories($pdo);
-                } elseif ($_method == 'create') {
-
-                } elseif ($_method == 'edit') {
-
-                } elseif ($_method == 'delete') {
-
-                }
-            } elseif ($action == 'products') {
-                if (!isset($_method)) {
-                    showProducts($pdo);
-                } elseif ($_method == 'create') {
-
-                } elseif ($_method == 'edit') {
-
-                } elseif ($_method == 'delete') {
-
-                }
-            } elseif ($action == 'orders') {
-                if (!isset($_method)) {
-                    showOrders($pdo);
-                } elseif ($_method == 'create') {
-
-                } elseif ($_method == 'edit') {
-
-                } elseif ($_method == 'delete') {
-
-                }
+            } elseif (isset($action) and $action == 'auth') {
+                auth($pdo, $_POST);
+            } elseif ($_method == 'add_account') {
+                createAccount($pdo, $_POST);
+            } elseif ($_method == 'delete_account') {
+                deleteAccount($pdo, $_POST);
+            } elseif ($_method == 'add_transaction') {
+                createTransaction($pdo, $_POST);
+            } elseif ($_method == 'delete_transaction') {
+                deleteTransaction($pdo, $_POST);
+            } elseif ($_sort_obj != null) {
+                sortTable($pdo, $_GET);
             } else {
                 view('404');
             }
         } else {
-            $_SESSION['flash_msg'] = 'Для входа в банкинг нужно залогиниpоваться';
+            $_SESSION['flash_msg'] = 'Для входа в банкинг нужно залогинизиpоваться';
             header('location: /login');
             exit();
         }

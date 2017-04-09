@@ -4,7 +4,6 @@
 function view($viewRoot, $data = [], $viewName = null)
 {
     include PATHROOT . '/views/header.php';
-
     if($viewRoot == 'admin'){
         include PATHROOT . '/views/admin/adminMenu.php';
     }
@@ -47,16 +46,3 @@ function sql($pdo, $sql, $params = [], $return = null) {
         return $res; //boolean
     }
 }
-
-/**
- *
- *
-
-$user = sql($pdo,
-'SELECT * FROM `users` WHERE `id` = '.$id,
-[],
-'rows'
-);
-
-
- */

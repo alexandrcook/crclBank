@@ -8,11 +8,13 @@
     <!-- Bootstrap Core CSS -->
     <link href="/views/template/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="/views/template/css/shop-homepage.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="/views/template/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="/views/template/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.js"></script>
     <title>Crcl MySQL</title>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -38,39 +40,8 @@
                             <a class="page-scroll" href="#page-top"></a>
                         </li>
                         <li>
-                            <a class="page-scroll" href=" https://github.com/alexandrcook/crclMysql"><b>GitHub</b></a>
+                            <a class="page-scroll" href=" https://github.com/alexandrcook/crclBankgit"><b>GitHub</b></a>
                         </li>
-                        <li>
-                            <a class="page-scroll" href="/">Головна</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="/categories">Категории товаров</a>
-                        </li>
-<!--                        --><?php
-//
-//                        global $pdo;
-//
-//                        if(isset($_SESSION['role']) and $_SESSION['role'] == 'admin'){
-//                            echo ('<li style="float: right">');
-//                            echo ('<a style="display: inline-block; padding: 5px; margin: 10px 0 0 10px" class="btn btn-default" href="/admin">Войти в админ панель</a>');
-//                            echo ('</li>');
-//                        }
-//
-//                        if(isset($_SESSION['user_name'])){
-//                            echo ('<li style="float: right">');
-//                            echo ('<span style="display: inline-block; margin-top: 15px">Залогинен пользователь <b>"'.$_SESSION['user_name'].'"</b> ('.$_SESSION['role'].')</span></span>
-//                            <a style="display: inline-block; padding: 5px" class="btn btn-default" href="/login/logout">Выйти</a>');
-//                            echo ('</li>');
-//                        }else{
-//                            echo('<li style="float: right"><a class="page-scroll" href="/login">Login/Register</a></li>');
-//                        }
-//
-//                        if(isset($_SESSION['user_name'])){
-//                        ?>
-<!--                            <li style="float: right">-->
-<!--                            <a class="page-scroll" href="/orders/basket">Корзина - --><?//= productInBasketCount($pdo); ?><!-- товар(ов)</a>-->
-<!--                        </li>-->
-                        <?php //} ?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

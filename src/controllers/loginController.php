@@ -2,11 +2,6 @@
 
 require_once PATHROOT . '/models/loginModel.php';
 
-function index()
-{
-    view('login');
-}
-
 function auth($pdo)
 {
     $email = isset($_POST['email']) ? $_POST['email'] : null;
